@@ -94,7 +94,7 @@ sa_time <- sa_time %>%
                  rep("Joburg", 2)))
 
 sa_long <- sa_time %>% 
-  gather(key = "time_type", value = minutes, -human)
+  gather(key = "time_type", value = minutes, -human, -geo)
 
 # Qualitative -------------------------------------------------------------
 #Create a count of qualitative values
@@ -146,7 +146,7 @@ ggplot(data = sa_long, aes(x  = minutes))+
 
 #Lets get rid of that one outlier
 sa_clean <- sa_long %>% 
-  filter(minutes < 36000) 
+  filter(minutes < 300) 
 
 #Try again
 ggplot(data = sa_clean, aes(x = minutes))+
