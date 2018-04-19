@@ -4,8 +4,6 @@
 #19 April 2018
 
 library(tidyverse)
-library(ggplot2)
-
 
 
 # t-test ------------------------------------------------------------------
@@ -87,7 +85,7 @@ ggplot(chicks_21, aes(x = Diet, y = weight, fill = Diet))+
  #but no increase for the d.f for diet
  
  #now look at the interactions BETWEEN factors
- summary(aov(weight ~ Diet * as.factor(Time), data =  filter(ChickWeight, Time)))
+ summary(aov(weight ~ Diet * as.factor(Time), data =  filter(ChickWeight, Time %in% c(0, 21))))
 
 
 #Create a line graph to help explain this concept
