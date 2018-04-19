@@ -107,7 +107,3 @@ t.test(dat ~ sample, data = r_two, var.equal = TRUE)
 #Pick a side
 t.test(dat ~ sample, data = r_two, var.equal = TRUE, alternative = "less")
 
-
-
-
-
