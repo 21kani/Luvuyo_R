@@ -95,9 +95,29 @@ ggplot(chicks_21, aes(x = Diet, y = weight, fill = Diet))+
  chicks_mean <- ChickWeight %>% 
    group_by(Diet, Time) %>% 
    summarise(weight_mean = mean(weight, na.rm = TRUE))
- ggplot()
+ 
+ 
+ ggplot(data = chicks_mean, aes(x = Time, y = weight_mean, colour = Diet))+
+   geom_line(size = 2)+
+   geom_point(shape = 15, size = 5)
 
 
+# Non- Parametric tests ---------------------------------------------------
+
+#but what if
+ #we dont have normal data?
+ 
+#For a t-test we rather use Wilcox rank sum test
+
+ wilcox.test() # And then one fills this in the same as for t-test()
+ 
+ #and now for the Kruskall-Wallis
+ kruskal.test(weight ~ Diet, data = chicks_1_21)
+
+ 
+ #Load this non-parametric post-hoc test
+ library(pgirmess)
+ kruskalmc(weight ~ Diet, data = chicks_1_21)
 
 
 
