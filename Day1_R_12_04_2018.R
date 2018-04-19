@@ -9,7 +9,7 @@
 library(tidyverse)
 
 # Intergers ---------------------------------------------------------------
-integer <- as.integer(seq(5,14, by =1)) #discrete values like how many members does a family have
+integer <- as.integer(seq(5,14, by = 1)) #discrete values like how many members does a family have
 
 # Looking at the summary of our integers
 summary(integer)
@@ -118,11 +118,12 @@ Chicks %>%
 Chicks %>% 
   filter(Time == 21) %>%  #double == sign becuse is a logical argument not a numeric
   group_by(Diet) %>% 
-  summarise(mean_wt = weight), median_wt = median(weight))
+  summarise(mean_wt = mean(weight), 
+            median_wt = median(weight))
 
 
 # Visualise the density of the data ---------------------------------------
-ggplot(data = filter(Chicks, == 21),
+ggplot(data = filter(Chicks, Time == 21),
        aes(x = weight, fill = Diet))+
   geom_density(alpha = 0.4)
 
@@ -138,7 +139,7 @@ library(e1071)
 Chicks %>% 
   filter(Time == 21) %>%  #double == sign becuse is a logical argument not a numeric
   group_by(Diet) %>% 
-  summarise(mean_wt = weight,
+  summarise(mean_wt = mean(weight),
             median_wt = median(weight),
             skew_wt = skewness(weight))
 #median is the middle of the data
@@ -151,7 +152,7 @@ Chicks %>%
 Chicks %>% 
   filter(Time == 21) %>%  #double == sign becuse is a logical argument not a numeric
   group_by(Diet) %>% 
-  summarise(mean_wt = weight,
+  summarise(mean_wt = mean(weight),
             median_wt = median(weight),
             skew_wt = skewness(weight),
             kurtosis_wt = kurtosis(weight))
@@ -164,14 +165,15 @@ Chicks %>%
 #Below is a summary of many different statisticasl properties
 wt_summary <- Chicks %>% 
   filter(Time == 21) %>% 
-  group_bt(Diet) %>% 
+  group_by(Diet) %>% 
   summarise(wt_mean = mean(weight),
             wt_median = median(weight),
             wt_var = var(weight),
             wt_sd = sd(weight),
             wt_min = min(weight),
-            wt_quart1 = quantile(weight, p 0.25),
-            wt_quart3 = quantile(weight),p 0.75))
+            wt_quart1 = quantile(weight, p = 0.25),
+            wt_quart3 = quantile(weight,p = 0.75))
 
-
+# visualise
+wt_summary
 
